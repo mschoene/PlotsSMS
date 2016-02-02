@@ -6,8 +6,8 @@ from smsPlotABS import *
 # class producing the 2D plot with xsec colors
 class smsPlotXSEC(smsPlotABS):
 
-    def __init__(self, modelname, histo, obsLimits, expLimits, energy, lumi, preliminary, label):
-        self.standardDef(modelname, histo, obsLimits, expLimits, energy, lumi, preliminary)
+    def __init__(self, modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary, label):
+        self.standardDef(modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary)
         self.LABEL = label
         # canvas for the plot
         self.c = rt.TCanvas("cCONT_%s" %label,"cCONT_%s" %label,600,600)
@@ -63,9 +63,21 @@ class smsPlotXSEC(smsPlotABS):
         self.emptyHisto.GetYaxis().SetRangeUser(self.model.Ymin, self.model.Ymax)
         self.emptyHisto.Draw()
         self.histo.Draw("COLZSAME")
+        if self.model.mTopDiagOn:
+            self.DrawMtopDiagonal(1)
+        self.DrawLines()
         if self.model.diagOn:
             self.DrawDiagonal()
-        self.DrawLines()
+        if self.model.mTopDiagOn:
+            gdiagonal = self.c.mtopgdiagonal.Clone("MtopDiagonalClone")
+            gdiagonal.SetFillColorAlpha(rt.kWhite, 0.6)
+            ldiagonal = self.c.mtopldiagonal
+            tdiagonal = self.c.mtoptdiagonal
+            gdiagonal.Draw("FSAME")
+            ldiagonal.Draw("LSAME")
+            tdiagonal.Draw("SAME")
+            self.c.mtopgdiagonal2 = gdiagonal
+            #self.DrawMtopDiagonal(1)
         self.DrawText()
         self.DrawLegend()
         self.DrawPaletteLabel()
