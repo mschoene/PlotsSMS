@@ -7,8 +7,8 @@ from smsPlotABS import *
 # class producing the 2D plot with contours
 class smsPlotBrazil(smsPlotABS):
 
-    def __init__(self, modelname, histo, obsLimits, expLimits, energy, lumi, preliminary, label):
-        self.standardDef(modelname, histo, obsLimits, expLimits, energy, lumi, preliminary)
+    def __init__(self, modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary, label):
+        self.standardDef(modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary)
         # canvas for the plot
         self.c = rt.TCanvas("cBrazil_%s" %label,"cBrazil_%s" %label,600,600)
         self.histo = self.emptyHistogram(histo)
@@ -26,8 +26,7 @@ class smsPlotBrazil(smsPlotABS):
         self.emptyHisto.GetYaxis().SetRangeUser(self.model.Ymin, self.model.Ymax)
         self.emptyHisto.Draw()
         self.histo.Draw("SAME")
-        if self.model.diagOn:
-            self.DrawDiagonal()
+        self.DrawDiagonal()
         self.DrawLines()
         self.DrawText()
         self.DrawLegend()
