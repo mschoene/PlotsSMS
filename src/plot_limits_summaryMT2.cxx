@@ -67,7 +67,7 @@ int main(){
   		    cSus15002, "gr_obs_smoothed", "gr_exp_smoothed");
   models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold.root", 
   		    cSus15003, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2.root", 
+  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2_dM25removed.root", 
   		    cSus15004, "gr_obs_smoothed", "gr_exp_smoothed");
   ///////////////////////////////    Defining T1tttt plot    /////////////////////////////////
   // models.back().add("SUS-15-003, 0-lep ("+mt2+"), 2.2 fb^{-1} (13 TeV)", folder+"t1tttt_sus15_003.root", 
