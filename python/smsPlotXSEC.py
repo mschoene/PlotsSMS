@@ -6,12 +6,13 @@ from smsPlotABS import *
 # class producing the 2D plot with xsec colors
 class smsPlotXSEC(smsPlotABS):
 
-    def __init__(self, modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary, label):
+    def __init__(self, modelname, histo, obsLimits, expLimits, histo2, obsLimits2, expLimits2, energy, lumi, preliminary, label):
         self.standardDef(modelname, histo, obsLimits, expLimits, obsLimits2, expLimits2, energy, lumi, preliminary)
         self.LABEL = label
         # canvas for the plot
         self.c = rt.TCanvas("cCONT_%s" %label,"cCONT_%s" %label,600,600)
-        self.histo = histo['histogram']
+        self.histo  = histo ['histogram']
+        self.histo2 = histo2
         # canvas style
         self.setStyle()
         self.setStyleCOLZ()
@@ -66,6 +67,18 @@ class smsPlotXSEC(smsPlotABS):
         #if self.model.mTopDiagOn:
         #    self.DrawMtopDiagonal(1)
         self.DrawLines()
+        if self.histo2:
+            #gg = self.OBS2['nominal'].Clone("gg")
+            gg = rt.TGraph(3, array('d',[100,self.model.Ymax+80]), array('d',[20,self.model.Ymax]))
+            gg.SetName("gg")
+            gg.SetFillColor(rt.kWhite)
+            gg.Draw("FSAME")
+            self.gg = gg
+            self.histo2['histogram'].SetMinimum(self.model.Zmin)
+            self.histo2['histogram'].SetMaximum(self.model.Zmax)
+            self.histo2['histogram'].Draw("COLSAME")
+        if self.OBS2:
+            self.DrawLines2()
         if self.model.diagOn:
             self.DrawDiagonal()
         if self.model.mTopDiagOn:
@@ -78,6 +91,8 @@ class smsPlotXSEC(smsPlotABS):
             #ldiagonal.Draw("LSAME")
             #tdiagonal.Draw("SAME")
             #self.c.mtopgdiagonal2 = gdiagonal
+        if self.model.t2ccDiagOn:
+            self.DrawT2ccDiagonal()
         self.DrawText()
         self.DrawLegend()
         self.DrawPaletteLabel()

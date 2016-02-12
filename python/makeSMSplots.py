@@ -8,14 +8,14 @@ if __name__ == '__main__':
     # read input arguments
     filename = sys.argv[1]
     modelname = sys.argv[1].split("/")[-1].split("_")[0]
-    analysisLabel = sys.argv[1].split("/")[-1].split("_")[1]
+    analysisLabel = sys.argv[1].split("/")[-1].split("_")[1] if len(sys.argv[1].split("/")[-1].split("_"))>1 else ""
     outputname = sys.argv[2]
 
     # read the config file
     fileIN = inputFile(filename)
     
     # classic temperature histogra
-    xsecPlot = smsPlotXSEC(modelname, fileIN.HISTOGRAM, fileIN.OBSERVED, fileIN.EXPECTED, fileIN.OBSERVED2, fileIN.EXPECTED2, fileIN.ENERGY, fileIN.LUMI, fileIN.PRELIMINARY, "")
+    xsecPlot = smsPlotXSEC(modelname, fileIN.HISTOGRAM, fileIN.OBSERVED, fileIN.EXPECTED, fileIN.HISTOGRAM2, fileIN.OBSERVED2, fileIN.EXPECTED2, fileIN.ENERGY, fileIN.LUMI, fileIN.PRELIMINARY, "")
     xsecPlot.Draw()
     xsecPlot.Save("%sXSEC" %outputname)
 
