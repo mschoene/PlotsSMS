@@ -5,11 +5,12 @@ rt.gROOT.SetBatch(True)
 class inputFile():
 
     def __init__(self, fileName):
-        self.HISTOGRAM = self.findHISTOGRAM(fileName)
-        self.EXPECTED = self.findEXPECTED(fileName)
-        self.OBSERVED = self.findOBSERVED(fileName)
-        self.EXPECTED2 = self.findEXPECTED2(fileName)
-        self.OBSERVED2 = self.findOBSERVED2(fileName)
+        self.HISTOGRAM  = self.findHISTOGRAM (fileName)
+        self.EXPECTED   = self.findEXPECTED  (fileName)
+        self.OBSERVED   = self.findOBSERVED  (fileName)
+        self.HISTOGRAM2 = self.findHISTOGRAM2(fileName)
+        self.EXPECTED2  = self.findEXPECTED2 (fileName)
+        self.OBSERVED2  = self.findOBSERVED2 (fileName)
         self.LUMI = self.findATTRIBUTE(fileName, "LUMI")
         self.ENERGY = self.findATTRIBUTE(fileName, "ENERGY")
         print self.ENERGY
@@ -69,6 +70,17 @@ class inputFile():
                     'colorLine': tmpLINE[5],
                     'colorArea': tmpLINE[6]}
 
+    def findHISTOGRAM2(self, fileName):
+        fileIN = open(fileName)        
+        for line in fileIN:
+            tmpLINE =  line[:-1].split(" ")
+            if tmpLINE[0] != "HISTOGRAM2": continue
+            fileIN.close()
+            rootFileIn = rt.TFile.Open(tmpLINE[1])
+            x = rootFileIn.Get(tmpLINE[2])
+            x.SetDirectory(0)
+            return {'histogram': x}
+            
     def findEXPECTED2(self, fileName):
         fileIN = open(fileName)        
         for line in fileIN:

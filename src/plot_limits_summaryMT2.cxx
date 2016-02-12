@@ -24,8 +24,8 @@ namespace{
   float fillTransparency = 0.08;
 
   //int c8TeV(kGray+2);
-  int cSus15002(kBlue), cSus15003(kOrange), cSus15004(kGreen+1);//, cSus15005(kMagenta+1);
-  //int cSus15004_1l(kBlack), cSus15007(kRed), cSus15008(kCyan+2);
+  int cQuark(kBlue), cTop(kMagenta+1), cBottom(kGreen+1), cQuark2(kAzure+10);
+  //int cSus15004_1l(kBlack), cSus15007(kCyan+2), cSus15008(kOrange);
 }
 
 int main(){
@@ -43,6 +43,8 @@ int main(){
   TString t2qq_8fold("#tilde{q} = #tilde{q}_{L}+#tilde{q}_{R} (#tilde{u}, #tilde{d}, #tilde{s}, #tilde{c})");
   TString t2qq_1fold("#tilde{q} = one light #tilde{q}");
   TString t2bb      ("#tilde{q} = #tilde{b}");
+  //TString t2tt      ("#tilde{q} = #tilde{t} (#rightarrow t#kern[0.4]{"+lsp+"}#kern[0.4]{)}");
+  TString t2tt      ("#tilde{q} = #tilde{t}");
   //TString t2qq_8fold("T2qq 8-fold");
   //TString t2qq_1fold("T2qq 1-fold");
   //TString t2bb      ("T2bb");
@@ -55,20 +57,22 @@ int main(){
 
   ///////////////////////////////    Defining T1 plot    /////////////////////////////////
   models.push_back(model_limits("T1", pp_gluglu));
-  models.back().add(t1tttt, folder+"limits_T1tttt_full_25Jan.root", 
-  		    cSus15002, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_25Jan.root", 
-  		    cSus15003, "gr_obs_smoothed", "gr_exp_smoothed");
   models.back().add(t1qqqq, folder+"limits_T1qqqq_full_25Jan.root", 
-  		    cSus15004, "gr_obs_smoothed", "gr_exp_smoothed");
+  		    cQuark, "gr_obs_smoothed", "gr_exp_smoothed");
+  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_25Jan.root", 
+  		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
+  models.back().add(t1tttt, folder+"limits_T1tttt_full_25Jan.root", 
+  		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
   ///////////////////////////////    Defining T2 plot    /////////////////////////////////
   models.push_back(model_limits("T2", t2));
-  models.back().add(t2qq_8fold, folder+"limits_T2qq_full_01Feb.root", 
-  		    cSus15002, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold.root", 
-  		    cSus15003, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2_dM25removed.root", 
-  		    cSus15004, "gr_obs_smoothed", "gr_exp_smoothed");
+  models.back().add(t2qq_8fold, folder+"limits_T2qq_full_01Feb_extrapolated.root", 
+  		    cQuark, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold_extrapolated.root", 
+  		    cQuark2, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2_dM25removed_extrapolated.root", 
+  		    cBottom, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+  models.back().add(t2tt      , folder+"limits_T2tt_full_28Janv2_divideDiagonal.root",//limits_T2tt_full_28Janv2_noDivideDiagonal.root", 
+  		    cTop, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
   ///////////////////////////////    Defining T1tttt plot    /////////////////////////////////
   // models.back().add("SUS-15-003, 0-lep ("+mt2+"), 2.2 fb^{-1} (13 TeV)", folder+"t1tttt_sus15_003.root", 
   // 		    cSus15003, "gr_obs_smoothed", "gr_exp_smoothed");
@@ -147,9 +151,10 @@ int main(){
 
     // Creating base histogram and drawing lumi labels
     float Xmin(700), Xmax(1750), Ymin(0), Ymax(1800), glu_lsp;
-    getModelParams(mod.model, Xmin, Xmax, Ymin, Ymax, glu_lsp);
+    TString Xtitle("");
+    getModelParams(mod.model, Xmin, Xmax, Ymin, Ymax, Xtitle, glu_lsp);
 
-    TH2D hbase = baseHistogram(Xmin, Xmax, Ymin, Ymax);
+    TH2D hbase = baseHistogram(Xmin, Xmax, Ymin, Ymax, Xtitle);
     hbase.Draw();
     addLabelsTitle(lMargin, tMargin, rMargin, mod.title);
 
@@ -227,13 +232,13 @@ void setGraphStyle(TGraph* graph, int color, int style, int width, double glu_ls
   double mglu, iniglu, endglu, mlsp;
   graph->GetPoint(0, iniglu, mlsp);
   graph->GetPoint(np-1, endglu, mlsp);
-  // Reversing graph if printed towards decreasing mgluino
-  if(iniglu > endglu) reverseGraph(graph);
-  // Adding a point so that it goes down to mLSP = 0
-  graph->SetPoint(graph->GetN(), max(iniglu,endglu), 0);
-  np++;
+  // // Reversing graph if printed towards decreasing mgluino
+  // if(iniglu > endglu) reverseGraph(graph);
+  // // Adding a point so that it goes down to mLSP = 0
+  // graph->SetPoint(graph->GetN(), max(iniglu,endglu), 0);
+  // np++;
 
-  reverseGraph(graph);
+  // reverseGraph(graph);
 
   // Adding a point at LSP = 0, and removing points beyond the diagonal
   for(int point(0); point < np; point++){
@@ -244,23 +249,24 @@ void setGraphStyle(TGraph* graph, int color, int style, int width, double glu_ls
       break;
     }
   }
-  // Finding intersection of line between last 2 points and mlsp = mglu - glu_lsp
-  double x1, y1, x2, y2;
-  graph->GetPoint(np-1, x1, y1);
-  graph->GetPoint(np-2, x2, y2);
-  double slope((y1-y2)/(x1-x2)), offset(y1-slope*x1);
-  double intersection((offset+glu_lsp)/(1-slope));
+  // // Finding intersection of line between last 2 points and mlsp = mglu - glu_lsp
+  // double x1, y1, x2, y2;
+  // graph->GetPoint(np-1, x1, y1);
+  // graph->GetPoint(np-2, x2, y2);
+  // double slope((y1-y2)/(x1-x2)), offset(y1-slope*x1);
+  // double intersection((offset+glu_lsp)/(1-slope));
 
-  // Adding extrapolation into the diagonal, and point for mglu = 0
-  if(slope!=1) graph->SetPoint(graph->GetN(), intersection, intersection-glu_lsp);
+  // // Adding extrapolation into the diagonal, and point for mglu = 0
+  // if(slope!=1) graph->SetPoint(graph->GetN(), intersection, intersection-glu_lsp);
   graph->SetPoint(graph->GetN(), 0, -glu_lsp);
-  //cout<<intersection<<endl;
-  if(x1 == x2 || y1 == y2 || slope == 1){
-    for(int point(0); point < graph->GetN(); point++){
-      graph->GetPoint(point, mglu, mlsp);
-      //cout<<point<<": "<<mglu<<", "<<mlsp<<endl;
-    }
-  }
+  // cout<<slope<<" " <<intersection<<endl;
+  // if(x1 == x2 || y1 == y2 || slope == 1){
+  //   for(int point(0); point < graph->GetN(); point++){
+  //     graph->GetPoint(point, mglu, mlsp);
+  //     cout<<point<<": "<<mglu<<", "<<mlsp<<endl;
+  //   }
+  // }
+  // //graph->Print();
 }
 
 void reverseGraph(TGraph *graph){
@@ -276,16 +282,20 @@ void reverseGraph(TGraph *graph){
     graph->SetPoint(point, mglus[point], mlsps[point]);
 }
 
-void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, float &glu_lsp){
+void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, TString &Xtitle, float &glu_lsp){
+  TString mglu("m_{#tilde{g}} [GeV]");
+  TString msq("m_{#tilde{q}} [GeV]");
+  Xtitle = mglu;
   if(model == "T1"){
     Xmin = 600; Xmax = 1950;
     Ymin = 0;   Ymax = 1885;
     glu_lsp = 0;
   }
   if(model == "T2"){
-    Xmin = 350; Xmax = 1400;
+    Xmin = 100; Xmax = 1400;
     Ymin = 0;   Ymax = 1000;
     glu_lsp = 0;
+    Xtitle = msq;
   }
   if(model == "T1tttt"){
     Xmin = 600; Xmax = 1950;
@@ -339,14 +349,14 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   label.DrawLatex(lMargin+offsetx, 1-tMargin-cmsH+0.01, "SUS-15-003, 0-lep (M#lower[-.1]{_{T2}})");
 }
 
-TH2D baseHistogram(float Xmin, float Xmax, float Ymin, float Ymax){
+TH2D baseHistogram(float Xmin, float Xmax, float Ymin, float Ymax, TString Xtitle){
   TH2D hbase("hbase", "", 1, Xmin, Xmax, 1, Ymin, Ymax);
   hbase.GetXaxis()->SetLabelFont(42);
   hbase.GetXaxis()->SetLabelSize(0.035);
   hbase.GetXaxis()->SetTitleFont(42);
   hbase.GetXaxis()->SetTitleSize(0.05);
   hbase.GetXaxis()->SetTitleOffset(1.2);
-  hbase.GetXaxis()->SetTitle("m_{#tilde{g}} [GeV]");
+  hbase.GetXaxis()->SetTitle(Xtitle);
   hbase.GetYaxis()->SetLabelFont(42);
   hbase.GetYaxis()->SetLabelSize(0.035);
   hbase.GetYaxis()->SetTitleFont(42);

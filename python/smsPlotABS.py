@@ -121,7 +121,7 @@ class smsPlotABS(object):
         #self.c.textNLONLL = textNLONLL
 
         # Labels for the two set of curves in T2qq 
-        if not self.OBS2: return
+        if not self.OBS2 or self.model.modelname != "T2qq": return
 
         # 8 squark label
         text8squark= rt.TLatex(750,600,"#tilde{q}_{L}+#tilde{q}_{R} (#tilde{u}, #tilde{d}, #tilde{s}, #tilde{c})")
@@ -292,6 +292,35 @@ class smsPlotABS(object):
         self.c.mtopldiagonal = ldiagonal
         self.c.mtoptdiagonal = tdiagonal
  
+    def DrawT2ccDiagonal(self, transparency=1):
+        diagonal = rt.TLine(self.model.Xmin, self.model.Xmin, self.model.Xmax, self.model.Xmax)
+        diagonal.SetLineColor(rt.kGray)
+        diagonal.SetLineStyle(2)
+        tdiagonal = rt.TLatex(450, 450+10,"m_{#tilde{t}} = m_{#tilde{#chi}_{1}^{0}}")
+        tdiagonal.SetTextAngle(math.degrees(math.atan(float(self.model.Xmax)/float(self.model.Ymax))))
+        tdiagonal.SetTextColor(rt.kGray+2)
+        tdiagonal.SetTextAlign(11)
+        tdiagonal.SetTextSize(0.025)
+        diagonal.Draw("LSAME")
+        tdiagonal.Draw("SAME")
+        mW = 80
+        diagonalW = rt.TLine(self.model.Xmin, self.model.Xmin-mW, self.model.Xmax, self.model.Xmax-mW)
+        diagonalW.SetLineColor(rt.kGray)
+        diagonalW.SetLineStyle(2)
+        tdiagonalW = rt.TLatex(450, 450-mW-10,"m_{#tilde{t}} = m_{W} + m_{#tilde{#chi}_{1}^{0}}")
+        tdiagonalW.SetTextAngle(math.degrees(math.atan(float(self.model.Xmax)/float(self.model.Ymax))))
+        tdiagonalW.SetTextColor(rt.kGray+2)
+        tdiagonalW.SetTextAlign(13)
+        tdiagonalW.SetTextSize(0.025)
+        diagonalW.Draw("LSAME")
+        tdiagonalW.Draw("SAME")
+        self.c.diagonal   = diagonal
+        self.c.diagonalW  = diagonalW
+        self.c.tdiagonal  = tdiagonal
+        self.c.tdiagonalW = tdiagonalW
+        
+
+
     def DrawDiagonal(self):
         diagonal = rt.TGraph(3, self.model.diagX, self.model.diagY)
         diagonal.SetName("diagonal")
@@ -345,8 +374,7 @@ class smsPlotABS(object):
         if 'plus2'  in self.EXP: self.EXP['plus2' ].Draw("LSAME")
         if 'minus2' in self.EXP: self.EXP['minus2'].Draw("LSAME")
 
-        if not self.OBS2: return
-        
+    def DrawLines2(self):
         # observed
         self.OBS2['nominal'].SetLineColor(color(self.OBS2['colorLine']))
         self.OBS2['nominal'].SetLineStyle(1)
