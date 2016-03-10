@@ -29,7 +29,7 @@ class sms():
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
-        self.sParticle = "m_{#tilde{g}} [GeV]"
+        self.sParticle = "m_{#kern[0.2]{#tilde{g}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop 
@@ -53,7 +53,7 @@ class sms():
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
-        self.sParticle = "m_{#tilde{g}} [GeV]"
+        self.sParticle = "m_{#kern[0.2]{#tilde{g}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop
@@ -76,7 +76,7 @@ class sms():
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
-        self.sParticle = "m_{#tilde{g}} [GeV]"
+        self.sParticle = "m_{#kern[0.2]{#tilde{g}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop
@@ -90,7 +90,7 @@ class sms():
         # model name
         self.modelname = "T2tt"
         # decay chain
-        self.label= "pp #rightarrow #tilde{t} #tilde{t}, #tilde{t} #rightarrow t #tilde{#chi}^{0}_{1}";
+        self.label= "pp #rightarrow #tilde{t} #bar{_{_{ }}#tilde{t}_{_{ }}}, #tilde{t} #rightarrow t #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 100
         self.Xmax = 900
@@ -101,7 +101,7 @@ class sms():
         #self.Zmin = 0.1
         #self.Zmax = 10
         # produce sparticle
-        self.sParticle = "m_{#tilde{t}} [GeV]"
+        self.sParticle = "m_{#kern[0.7]{#tilde{t}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop 
@@ -118,7 +118,7 @@ class sms():
         # model name
         self.modelname = "T2ttcc"
         # decay chain
-        self.label= "pp #rightarrow #tilde{t} #tilde{t}, #tilde{t} #rightarrow t(c) #tilde{#chi}^{0}_{1}";
+        self.label= "pp #rightarrow #tilde{t} #bar{#tilde{t}}, #tilde{t} #rightarrow t(c) #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 100
         self.Xmax = 900
@@ -147,7 +147,7 @@ class sms():
         # model name
         self.modelname = "T2cc"
         # decay chain
-        self.label= "pp #rightarrow #tilde{t} #tilde{t}, #tilde{t} #rightarrow c #tilde{#chi}^{0}_{1}";
+        self.label= "pp #rightarrow #tilde{t} #bar{#tilde{t}}, #tilde{t} #rightarrow c #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 100
         self.Xmax = 600
@@ -176,7 +176,7 @@ class sms():
         # model name
         self.modelname = "T2bb"
         # decay chain
-        self.label= "pp #rightarrow #tilde{b} #tilde{b}, #tilde{b} #rightarrow b #tilde{#chi}^{0}_{1}";
+        self.label= "pp #rightarrow #tilde{b} #bar{#tilde{b}}, #tilde{b} #rightarrow b #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 300
         self.Xmax = 1000
@@ -185,7 +185,7 @@ class sms():
         self.Zmin = 0.001
         self.Zmax = 20
         # produce sparticle
-        self.sParticle = "m_{#tilde{b}} [GeV]"
+        self.sParticle = "m_{#kern[0.1]{#tilde{b}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop 
@@ -202,7 +202,7 @@ class sms():
         # model name
         self.modelname = "T2qq"
         # decay chain
-        self.label= "pp #rightarrow #tilde{q} #tilde{q}, #tilde{q} #rightarrow q #tilde{#chi}^{0}_{1}";
+        self.label= "pp #rightarrow #tilde{q} #bar{#tilde{q}}, #tilde{q} #rightarrow q #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 400
         self.Xmax = 1500
@@ -211,7 +211,7 @@ class sms():
         self.Zmin = 0.001
         self.Zmax = 5
         # produce sparticle
-        self.sParticle = "m_{#tilde{q}} [GeV]"
+        self.sParticle = "m_{#kern[0.15]{#tilde{q}}} [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop 
