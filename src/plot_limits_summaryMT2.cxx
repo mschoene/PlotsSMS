@@ -34,7 +34,8 @@ int main(){
   // Label definitions
   TString lsp("#tilde{#chi}#lower[0.2]{#scale[0.85]{^{0}}}#kern[-1.3]{#scale[0.85]{_{1}}}");
   TString pp_gluglu("pp #rightarrow #tilde{g}#kern[0.3]{#tilde{g}}");
-  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  //TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#bar{#tilde{q}}}");
   TString t2(pp_sqsq+", #tilde{q} #rightarrow q#kern[0.4]{"+lsp+"}");
   TString basetitle(pp_gluglu+",  #tilde{g} #rightarrow ");
   TString t1tttt("#tilde{g} #rightarrow t#kern[0.4]{#bar{t}}#kern[0.4]{"+lsp+"}");
@@ -284,7 +285,8 @@ void reverseGraph(TGraph *graph){
 
 void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, TString &Xtitle, float &glu_lsp){
   TString mglu("m_{#tilde{g}} [GeV]");
-  TString msq("m_{#tilde{q}} [GeV]");
+  //TString msq("m_{#tilde{q}} [GeV]");
+  TString msq("m_{#kern[0.15]{#tilde{q}}} [GeV]");
   Xtitle = mglu;
   if(model == "T1"){
     Xmin = 600; Xmax = 1950;
