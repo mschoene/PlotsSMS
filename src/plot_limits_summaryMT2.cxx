@@ -284,7 +284,7 @@ void reverseGraph(TGraph *graph){
 }
 
 void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, TString &Xtitle, float &glu_lsp){
-  TString mglu("m_{#tilde{g}} [GeV]");
+  TString mglu("m_{#kern[0.15]{#tilde{g}}} [GeV]");
   //TString msq("m_{#tilde{q}} [GeV]");
   TString msq("m_{#kern[0.15]{#tilde{q}}} [GeV]");
   Xtitle = mglu;
@@ -294,7 +294,7 @@ void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float 
     glu_lsp = 0;
   }
   if(model == "T2"){
-    Xmin = 100; Xmax = 1400;
+    Xmin = 100; Xmax = 1350;
     Ymin = 0;   Ymax = 1000;
     glu_lsp = 0;
     Xtitle = msq;
@@ -337,7 +337,7 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   label.DrawLatex(lMargin, ycms, "CMS");
   label.SetTextAlign(11); label.SetTextFont(52); label.SetTextSize(0.038);
   //label.DrawLatex(0.27+offsetx, ycms, "Preliminary");
-  label.DrawLatex(0.27, ycms, "Preliminary");
+  //label.DrawLatex(0.27, ycms, "Preliminary");
   // Printing process title
   label.SetTextAlign(22); label.SetTextFont(42); label.SetTextSize(0.6*tMargin);
   //label.DrawLatex((1-rMargin-lMargin)/2.+lMargin-0.05, 1-tMargin/2., title);
