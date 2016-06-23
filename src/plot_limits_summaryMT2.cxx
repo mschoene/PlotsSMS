@@ -34,7 +34,8 @@ int main(){
   // Label definitions
   TString lsp("#tilde{#chi}#lower[0.2]{#scale[0.85]{^{0}}}#kern[-1.3]{#scale[0.85]{_{1}}}");
   TString pp_gluglu("pp #rightarrow #tilde{g}#kern[0.3]{#tilde{g}}");
-  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  //TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#bar{#tilde{q}}}");
   TString t2(pp_sqsq+", #tilde{q} #rightarrow q#kern[0.4]{"+lsp+"}");
   TString basetitle(pp_gluglu+",  #tilde{g} #rightarrow ");
   TString t1tttt("#tilde{g} #rightarrow t#kern[0.4]{#bar{t}}#kern[0.4]{"+lsp+"}");
@@ -283,8 +284,9 @@ void reverseGraph(TGraph *graph){
 }
 
 void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, TString &Xtitle, float &glu_lsp){
-  TString mglu("m_{#tilde{g}} [GeV]");
-  TString msq("m_{#tilde{q}} [GeV]");
+  TString mglu("m_{#kern[0.15]{#tilde{g}}} [GeV]");
+  //TString msq("m_{#tilde{q}} [GeV]");
+  TString msq("m_{#kern[0.15]{#tilde{q}}} [GeV]");
   Xtitle = mglu;
   if(model == "T1"){
     Xmin = 600; Xmax = 1950;
@@ -292,7 +294,7 @@ void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float 
     glu_lsp = 0;
   }
   if(model == "T2"){
-    Xmin = 100; Xmax = 1400;
+    Xmin = 100; Xmax = 1350;
     Ymin = 0;   Ymax = 1000;
     glu_lsp = 0;
     Xtitle = msq;
@@ -335,7 +337,7 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   label.DrawLatex(lMargin, ycms, "CMS");
   label.SetTextAlign(11); label.SetTextFont(52); label.SetTextSize(0.038);
   //label.DrawLatex(0.27+offsetx, ycms, "Preliminary");
-  label.DrawLatex(0.27, ycms, "Preliminary");
+  //label.DrawLatex(0.27, ycms, "Preliminary");
   // Printing process title
   label.SetTextAlign(22); label.SetTextFont(42); label.SetTextSize(0.6*tMargin);
   //label.DrawLatex((1-rMargin-lMargin)/2.+lMargin-0.05, 1-tMargin/2., title);
