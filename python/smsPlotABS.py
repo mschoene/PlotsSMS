@@ -144,6 +144,7 @@ class smsPlotABS(object):
         # save the output
         os.system("mkdir -p plots")
         self.c.SaveAs("plots/%s.pdf" %label)
+        self.c.SaveAs("plots/%s.root" %label)
         
     def DrawLegend(self):
         xRange = self.model.Xmax-self.model.Xmin
@@ -270,6 +271,31 @@ class smsPlotABS(object):
     def DrawMtopDiagonal(self, transparency=1):
         diagX = array('f',[self.model.mT+self.model.dM,self.model.mT+self.model.dM+5000,self.model.mT-self.model.dM+5000,self.model.mT-self.model.dM])
         diagY = array('f',[0,5000,5000,0])
+        gdiagonal = rt.TGraph(4, diagX, diagY)
+        gdiagonal.SetName("MtopDiagonal")
+        #gdiagonal.SetFillColor(rt.kWhite)
+        gdiagonal.SetFillColorAlpha(rt.kWhite, transparency)
+        #gdiagonal.SetFillColorAlpha(18, 0.7)
+        #gdiagonal.SetFillColor(18)
+        ldiagonal = rt.TLine(self.model.mT,0,self.model.mT+self.model.Ymax,self.model.Ymax)
+        ldiagonal.SetLineColor(rt.kGray)
+        ldiagonal.SetLineStyle(2)
+        #tdiagonal = rt.TLatex(200, 200-self.model.mT,"m_{#tilde{t}} = m_{t} + m_{#tilde{#chi}_{1}^{0}}")
+        tdiagonal = rt.TLatex(450, 450-self.model.mT,"m_{#tilde{t}} = m_{t} + m_{#tilde{#chi}_{1}^{0}}")
+        tdiagonal.SetTextAngle(math.degrees(math.atan(float(self.model.Xmax)/float(self.model.Ymax))))
+        tdiagonal.SetTextColor(rt.kGray+2)
+        tdiagonal.SetTextAlign(11)
+        tdiagonal.SetTextSize(0.025)
+        gdiagonal.Draw("FSAME")
+        ldiagonal.Draw("LSAME")
+        tdiagonal.Draw("SAME")
+        self.c.mtopgdiagonal = gdiagonal
+        self.c.mtopldiagonal = ldiagonal
+        self.c.mtoptdiagonal = tdiagonal
+ 
+    def DrawSmallMtopDiagonal(self, transparency=1):
+        diagX = array('f',[self.model.mT+self.model.dM,self.model.mT+self.model.dM+87.5,self.model.mT-self.model.dM+87.5+25.0,self.model.mT-self.model.dM])
+        diagY = array('f',[0,87.5,87.5+25.0,0])
         gdiagonal = rt.TGraph(4, diagX, diagY)
         gdiagonal.SetName("MtopDiagonal")
         #gdiagonal.SetFillColor(rt.kWhite)
