@@ -22,10 +22,10 @@ class sms():
         # decay chain
         self.label= "pp #rightarrow #tilde{g} #tilde{g}, #tilde{g} #rightarrow t #bar{t} #tilde{#chi}^{0}_{1}";
         # scan range to plot
-        self.Xmin = 700
-        self.Xmax = 1950
+        self.Xmin = 600
+        self.Xmax = 2000
         self.Ymin = 0
-        self.Ymax = 1900
+        self.Ymax = 1800
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
@@ -47,9 +47,9 @@ class sms():
         self.label= "pp #rightarrow #tilde{g} #tilde{g}, #tilde{g} #rightarrow b #bar{b} #tilde{#chi}^{0}_{1}";
         # plot boundary. The top 1/4 of the y axis is taken by the legend
         self.Xmin = 600
-        self.Xmax = 1950
+        self.Xmax = 2100
         self.Ymin = 0
-        self.Ymax = 1900
+        self.Ymax = 1800
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
@@ -70,9 +70,9 @@ class sms():
         self.label= "pp #rightarrow #tilde{g} #tilde{g}, #tilde{g} #rightarrow q #bar{q} #tilde{#chi}^{0}_{1}";
         # plot boundary. The top 1/4 of the y axis is taken by the legend
         self.Xmin = 600
-        self.Xmax = 1950
+        self.Xmax = 2000
         self.Ymin = 0
-        self.Ymax = 1600
+        self.Ymax = 1800
         self.Zmin = 0.001
         self.Zmax = 2
         # produce sparticle
@@ -92,12 +92,12 @@ class sms():
         # decay chain
         self.label= "pp #rightarrow #tilde{t} #bar{_{_{ }}#tilde{t}_{_{ }}}, #tilde{t} #rightarrow t #tilde{#chi}^{0}_{1}";
         # scan range to plot
-        self.Xmin = 100
-        self.Xmax = 900
+        self.Xmin = 150
+        self.Xmax = 1200
         self.Ymin = 0
-        self.Ymax = 500
-        self.Zmin = 0.001
-        self.Zmax = 200
+        self.Ymax = 700
+        self.Zmin = 0.01
+        self.Zmax = 100
         #self.Zmin = 0.1
         #self.Zmax = 10
         # produce sparticle
@@ -179,9 +179,9 @@ class sms():
         self.label= "pp #rightarrow #tilde{b} #bar{#tilde{b}}, #tilde{b} #rightarrow b #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 300
-        self.Xmax = 1000
+        self.Xmax = 1200
         self.Ymin = 0
-        self.Ymax = 700
+        self.Ymax = 800
         self.Zmin = 0.001
         self.Zmax = 20
         # produce sparticle
@@ -204,8 +204,8 @@ class sms():
         # decay chain
         self.label= "pp #rightarrow #tilde{q} #bar{#tilde{q}}, #tilde{q} #rightarrow q #tilde{#chi}^{0}_{1}";
         # scan range to plot
-        self.Xmin = 400
-        self.Xmax = 1500
+        self.Xmin = 300
+        self.Xmax = 1600
         self.Ymin = 0
         self.Ymax = 1200
         self.Zmin = 0.001
