@@ -82,7 +82,8 @@ class smsPlotXSEC(smsPlotABS):
         if self.model.diagOn:
             self.DrawDiagonal()
         if self.model.mTopDiagOn:
-            self.DrawMtopDiagonal(1)
+#            self.DrawMtopDiagonal(1)
+            self.DrawSmallMtopDiagonal(1)
             #gdiagonal = self.c.mtopgdiagonal.Clone("MtopDiagonalClone")
             #gdiagonal.SetFillColorAlpha(rt.kWhite, 0.6)
             #ldiagonal = self.c.mtopldiagonal

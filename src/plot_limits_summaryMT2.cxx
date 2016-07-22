@@ -24,7 +24,7 @@ namespace{
   float fillTransparency = 0.08;
 
   //int c8TeV(kGray+2);
-  int cQuark(kBlue), cTop(kMagenta+1), cBottom(kGreen+1), cQuark2(kAzure+10);
+  int cQuark(kBlue), cTop(kMagenta+1), cBottom(kGreen+1);//, cQuark2(kAzure+10);
   //int cSus15004_1l(kBlack), cSus15007(kCyan+2), cSus15008(kOrange);
 }
 
@@ -34,7 +34,8 @@ int main(){
   // Label definitions
   TString lsp("#tilde{#chi}#lower[0.2]{#scale[0.85]{^{0}}}#kern[-1.3]{#scale[0.85]{_{1}}}");
   TString pp_gluglu("pp #rightarrow #tilde{g}#kern[0.3]{#tilde{g}}");
-  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  //TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#tilde{q}}");
+  TString pp_sqsq("pp #rightarrow #tilde{q}#kern[0.3]{#bar{#tilde{q}}}");
   TString t2(pp_sqsq+", #tilde{q} #rightarrow q#kern[0.4]{"+lsp+"}");
   TString basetitle(pp_gluglu+",  #tilde{g} #rightarrow ");
   TString t1tttt("#tilde{g} #rightarrow t#kern[0.4]{#bar{t}}#kern[0.4]{"+lsp+"}");
@@ -52,27 +53,48 @@ int main(){
   TString mt2("M#lower[-.1]{_{T2}}"), mht("#slash{H}#lower[-.1]{_{T}}"), aT("#alpha#lower[-.1]{_{T}}");
 
   // Folder with root files containing the TGraphs
-  TString folder("config/SUS15003/limits_final/");
+  //  TString folder("config/SUS15003/limits_final/");
+  TString folder("config/SUS16015/limits_15jul/");
   vector<model_limits> models;
 
   ///////////////////////////////    Defining T1 plot    /////////////////////////////////
   models.push_back(model_limits("T1", pp_gluglu));
-  models.back().add(t1qqqq, folder+"limits_T1qqqq_full_25Jan.root", 
+  models.back().add(t1qqqq, folder+"limits_T1qqqq_full_noBtag2.root", 
   		    cQuark, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_25Jan.root", 
+  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_noBtag2.root", 
   		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t1tttt, folder+"limits_T1tttt_full_25Jan.root", 
+  models.back().add(t1tttt, folder+"limits_T1tttt_full_noBtag2.root", 
   		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
   ///////////////////////////////    Defining T2 plot    /////////////////////////////////
   models.push_back(model_limits("T2", t2));
-  models.back().add(t2qq_8fold, folder+"limits_T2qq_full_01Feb_extrapolated.root", 
-  		    cQuark, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
-  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold_extrapolated.root", 
-  		    cQuark2, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
-  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2_dM25removed_extrapolated.root", 
-  		    cBottom, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
-  models.back().add(t2tt      , folder+"limits_T2tt_full_28Janv2_divideDiagonal.root",//limits_T2tt_full_28Janv2_noDivideDiagonal.root", 
-  		    cTop, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+//  models.back().add(t2qq_8fold, folder+"limits_T2qq_full_01Feb_extrapolated.root", 
+//  		    cQuark, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+//  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold_extrapolated.root", 
+//  		    cQuark2, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+  models.back().add(t2bb      , folder+"limits_T2bb_full_noBtag2.root", 
+  		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
+  models.back().add(t2tt      , folder+"limits_T2tt_full_noBtag2.root ",
+  		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
+
+  ////// 2015
+//  ///////////////////////////////    Defining T1 plot    /////////////////////////////////
+//  models.push_back(model_limits("T1", pp_gluglu));
+//  models.back().add(t1qqqq, folder+"limits_T1qqqq_full_25Jan.root", 
+//  		    cQuark, "gr_obs_smoothed", "gr_exp_smoothed");
+//  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_25Jan.root", 
+//  		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
+//  models.back().add(t1tttt, folder+"limits_T1tttt_full_25Jan.root", 
+//  		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
+//  ///////////////////////////////    Defining T2 plot    /////////////////////////////////
+//  models.push_back(model_limits("T2", t2));
+//  models.back().add(t2qq_8fold, folder+"limits_T2qq_full_01Feb_extrapolated.root", 
+//  		    cQuark, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+//  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold_extrapolated.root", 
+//  		    cQuark2, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+//  models.back().add(t2bb      , folder+"limits_T2bb_full_28Janv2_dM25removed_extrapolated.root", 
+//  		    cBottom, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
+//  models.back().add(t2tt      , "config/SUS15003/limits_corridor/limits_t2tt_fastsim-genSyst.root ",//limits_T2tt_full_28Janv2_noDivideDiagonal.root", 
+//  		    cTop, "gr_obs_smoothed;1", "gr_exp_smoothed;1");
   ///////////////////////////////    Defining T1tttt plot    /////////////////////////////////
   // models.back().add("SUS-15-003, 0-lep ("+mt2+"), 2.2 fb^{-1} (13 TeV)", folder+"t1tttt_sus15_003.root", 
   // 		    cSus15003, "gr_obs_smoothed", "gr_exp_smoothed");
@@ -150,7 +172,7 @@ int main(){
     model_limits mod(models[imodel]);
 
     // Creating base histogram and drawing lumi labels
-    float Xmin(700), Xmax(1750), Ymin(0), Ymax(1800), glu_lsp;
+    float Xmin(700), Xmax(2000), Ymin(0), Ymax(1900), glu_lsp;
     TString Xtitle("");
     getModelParams(mod.model, Xmin, Xmax, Ymin, Ymax, Xtitle, glu_lsp);
 
@@ -283,8 +305,9 @@ void reverseGraph(TGraph *graph){
 }
 
 void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float &Ymax, TString &Xtitle, float &glu_lsp){
-  TString mglu("m_{#tilde{g}} [GeV]");
-  TString msq("m_{#tilde{q}} [GeV]");
+  TString mglu("m_{#kern[0.15]{#tilde{g}}} [GeV]");
+  //TString msq("m_{#tilde{q}} [GeV]");
+  TString msq("m_{#kern[0.15]{#tilde{q}}} [GeV]");
   Xtitle = mglu;
   if(model == "T1"){
     Xmin = 600; Xmax = 1950;
@@ -292,7 +315,7 @@ void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float 
     glu_lsp = 0;
   }
   if(model == "T2"){
-    Xmin = 100; Xmax = 1400;
+    Xmin = 100; Xmax = 1350;
     Ymin = 0;   Ymax = 1000;
     glu_lsp = 0;
     Xtitle = msq;
@@ -334,7 +357,7 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   //label.DrawLatex(lMargin+offsetx, ycms, "CMS");
   label.DrawLatex(lMargin, ycms, "CMS");
   label.SetTextAlign(11); label.SetTextFont(52); label.SetTextSize(0.038);
-  //label.DrawLatex(0.27+offsetx, ycms, "Preliminary");
+  ////label.DrawLatex(0.27+offsetx, ycms, "Preliminary");
   label.DrawLatex(0.27, ycms, "Preliminary");
   // Printing process title
   label.SetTextAlign(22); label.SetTextFont(42); label.SetTextSize(0.6*tMargin);
@@ -342,11 +365,13 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   label.DrawLatex(0.75, 1-tMargin-0.15, title);
   // Printing luminosity
   label.SetTextAlign(31); label.SetTextFont(42); label.SetTextSize(0.6*tMargin);
-  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "2.3 fb^{-1} (13 TeV)");
+  //  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "2.3 fb^{-1} (13 TeV)");
+  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "7.7 fb^{-1} (13 TeV)");
   //label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "Dec 2015");
   // Printing analysis name
   label.SetTextAlign(11); label.SetTextFont(42); label.SetTextSize(legTextSize);
-  label.DrawLatex(lMargin+offsetx, 1-tMargin-cmsH+0.01, "SUS-15-003, 0-lep (M#lower[-.1]{_{T2}})");
+  //  label.DrawLatex(lMargin+offsetx, 1-tMargin-cmsH+0.01, "SUS-15-003, 0-lep (M#lower[-.1]{_{T2}})");
+  label.DrawLatex(lMargin+offsetx, 1-tMargin-cmsH+0.01, "SUS-16-015, 0-lep (M#lower[-.1]{_{T2}})");
 }
 
 TH2D baseHistogram(float Xmin, float Xmax, float Ymin, float Ymax, TString Xtitle){
