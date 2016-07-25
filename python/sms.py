@@ -112,7 +112,7 @@ class sms():
         self.diagOn = True
         #self.mT, self.dM = 172.5, 6.25
         self.mT, self.dM = 175, 25
-        self.mTopDiagOn = False
+        self.mTopDiagOn = True
  
     def T2ttcc(self):
         # model name
@@ -205,7 +205,7 @@ class sms():
         self.label= "pp #rightarrow #tilde{q} #bar{#tilde{q}}, #tilde{q} #rightarrow q #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 300
-        self.Xmax = 1200
+        self.Xmax = 1600
         self.Ymin = 0
         self.Ymax = 1200
         self.Zmin = 0.01
