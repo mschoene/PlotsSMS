@@ -15,6 +15,9 @@ class sms():
         if modelname.find("T2cc")   != -1: self.T2cc  ()
         if modelname.find("T2ttcc") != -1: self.T2ttcc()
 
+        if modelname.find("T2bH") != -1: self.T2bH()
+        if modelname.find("TChiWH") != -1: self.TChiWH()
+
 
     def T1tttt(self):
         # model name
@@ -212,6 +215,58 @@ class sms():
         self.Zmax = 20
         # produce sparticle
         self.sParticle = "m_{#kern[0.15]{#tilde{q}}} [GeV]"
+        # LSP
+        self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
+        # diagonal position: mLSP = mgluino - 2mtop 
+        mW = 75
+        self.diagX = array('d',[0,20000])
+        self.diagY = array('d',[-mW, 20000-mW])        
+        # turn off diagonal lines
+        self.diagOn = False
+        #self.mT, self.dM = 172.5, 6.25
+        self.mT, self.dM = 175, 25
+        self.mTopDiagOn = False
+        
+    def T2bH(self):
+        # model name
+        self.modelname = "T2bH"
+        # decay chain
+        self.label= "pp #rightarrow #tilde{b} #bar{#tilde{b}}, #tilde{b} #rightarrow b #tilde{#chi}^{0}_{2}  #rightarrow bH #tilde{#chi}^{0}_{1}";
+        # scan range to plot
+        self.Xmin = 250
+        self.Xmax = 600
+        self.Ymin = 0
+        self.Ymax = 400
+        self.Zmin = 0.1
+        self.Zmax = 2
+        # produce sparticle
+        self.sParticle = "m_{#kern[0.1]{#tilde{b}}} [GeV]"
+        # LSP
+        self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
+        # diagonal position: mLSP = mgluino - 2mtop 
+        mW = 75
+        self.diagX = array('d',[0,20000])
+        self.diagY = array('d',[-mW, 20000-mW])        
+        # turn off diagonal lines
+        self.diagOn = False
+        #self.mT, self.dM = 172.5, 6.25
+        self.mT, self.dM = 175, 25
+        self.mTopDiagOn = False
+        
+    def TChiWH(self):
+        # model name
+        self.modelname = "TChiWH"
+        # decay chain
+        self.label= "pp #rightarrow #tilde{#chi}_{1}^{#pm} #tilde{#chi}_{2}^{0},  #tilde{#chi}_{1}^{#pm} #rightarrow W^{#pm} #tilde{#chi}_{1}^{0}, #tilde{#chi}_{2}^{0} #rightarrow H #tilde{#chi}_{1}^{0} ";
+        # scan range to plot
+        self.Xmin = 125
+        self.Xmax = 250
+        self.Ymin = 0
+        self.Ymax = 200
+        self.Zmin = 1
+        self.Zmax = 6
+        # produce sparticle
+        self.sParticle = "m_{#kern[0.1]{#tilde{#chi}_{1}^{#pm}}} = m_{#kern[0.1]{#tilde{#chi}_{2}^{0}}}  [GeV]"
         # LSP
         self.LSP = "m_{#tilde{#chi}_{1}^{0}} [GeV]"
         # diagonal position: mLSP = mgluino - 2mtop 

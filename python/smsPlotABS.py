@@ -104,7 +104,8 @@ class smsPlotABS(object):
         textCMS.Draw()
         self.c.textCMS = textCMS
         # MODEL LABEL
-        textModelLabel= rt.TLatex(0.15,0.90,"%s  NLO+NLL exclusion" %self.model.label)
+#        textModelLabel= rt.TLatex(0.15,0.90,"%s  NLO+NLL exclusion" %self.model.label)
+        textModelLabel= rt.TLatex(0.15,0.90,"%s" %self.model.label)
         textModelLabel.SetNDC()
         textModelLabel.SetTextAlign(13)
         textModelLabel.SetTextFont(42)
@@ -118,7 +119,7 @@ class smsPlotABS(object):
         textNLONLL.SetTextFont(42)
         textNLONLL.SetTextSize(0.04)
         textNLONLL.Draw()
-        #self.c.textNLONLL = textNLONLL
+#        self.c.textNLONLL = textNLONLL
 
         # Labels for the two set of curves in T2qq 
         if not self.OBS2 or self.model.modelname != "T2qq": return
