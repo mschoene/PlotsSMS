@@ -234,9 +234,9 @@ class sms():
         self.label= "pp #rightarrow #tilde{b} #bar{#tilde{b}}, #tilde{b} #rightarrow b #tilde{#chi}^{0}_{2}  #rightarrow bH #tilde{#chi}^{0}_{1}";
         # scan range to plot
         self.Xmin = 250
-        self.Xmax = 600
+        self.Xmax = 700
         self.Ymin = 0
-        self.Ymax = 400
+        self.Ymax = 500
         self.Zmin = 0.1
         self.Zmax = 2
         # produce sparticle
@@ -260,10 +260,10 @@ class sms():
         self.label= "pp #rightarrow #tilde{#chi}_{1}^{#pm} #tilde{#chi}_{2}^{0},  #tilde{#chi}_{1}^{#pm} #rightarrow W^{#pm} #tilde{#chi}_{1}^{0}, #tilde{#chi}_{2}^{0} #rightarrow H #tilde{#chi}_{1}^{0} ";
         # scan range to plot
         self.Xmin = 125
-        self.Xmax = 250
+        self.Xmax = 300
         self.Ymin = 0
         self.Ymax = 200
-        self.Zmin = 1
+        self.Zmin = 0.1
         self.Zmax = 6
         # produce sparticle
         self.sParticle = "m_{#kern[0.1]{#tilde{#chi}_{1}^{#pm}}} = m_{#kern[0.1]{#tilde{#chi}_{2}^{0}}}  [GeV]"
