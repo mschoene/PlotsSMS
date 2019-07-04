@@ -58,7 +58,28 @@ class smsPlotXSEC(smsPlotABS):
         textCOLZ.SetTextAngle(90)
         textCOLZ.Draw()
         self.c.textCOLZ = textCOLZ
-            
+ 
+
+    def DrawAnaLabel(self):
+        t = 0.07
+        r = 0.05
+    #    writeAnalysisText = True
+        analysisText   = "#bf{SP Analysis}"
+        analysisTextFont = 42 
+        lumiTextSize     = 0.6
+        lumiTextOffset   = 0.2
+        
+        latex0 = rt.TLatex(0.39,1-5*0.08,    analysisText)
+        latex0.SetNDC()
+    #    latex0.SetTextColor(rt.kBlack)    
+        latex0.SetTextFont(42)
+        latex0.SetTextAlign(31) 
+        latex0.SetTextSize( 0.6*0.07*0.9)
+    #latex0.DrawLatex(1-3.1*r,1-5*t,analysisText)
+        latex0.Draw()
+        self.c.latex0 = latex0        
+
+
     def Draw(self):
         self.emptyHisto.GetXaxis().SetRangeUser(self.model.Xmin, self.model.Xmax)
         self.emptyHisto.GetYaxis().SetRangeUser(self.model.Ymin, self.model.Ymax)
@@ -97,4 +118,4 @@ class smsPlotXSEC(smsPlotABS):
         self.DrawText()
         self.DrawLegend()
         self.DrawPaletteLabel()
-        
+        self.DrawAnaLabel()         

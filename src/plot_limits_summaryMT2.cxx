@@ -54,16 +54,16 @@ int main(){
 
   // Folder with root files containing the TGraphs
   //  TString folder("config/SUS15003/limits_final/");
-  TString folder("config/SUS16015/limits_15jul/");
+  TString folder("config/SUS16015/limits_July24/");
   vector<model_limits> models;
 
   ///////////////////////////////    Defining T1 plot    /////////////////////////////////
   models.push_back(model_limits("T1", pp_gluglu));
-  models.back().add(t1qqqq, folder+"limits_T1qqqq_full_noBtag2.root", 
+  models.back().add(t1qqqq, folder+"limits_T1qqqq_full_July24.root", 
   		    cQuark, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_noBtag2.root", 
+  models.back().add(t1bbbb, folder+"limits_T1bbbb_full_July24.root", 
   		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t1tttt, folder+"limits_T1tttt_full_noBtag2.root", 
+  models.back().add(t1tttt, folder+"limits_T1tttt_full_July24.root", 
   		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
   ///////////////////////////////    Defining T2 plot    /////////////////////////////////
   models.push_back(model_limits("T2", t2));
@@ -71,9 +71,9 @@ int main(){
 //  		    cQuark, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
 //  models.back().add(t2qq_1fold, folder+"limits_T2qq_full_01Feb-OneFold_extrapolated.root", 
 //  		    cQuark2, "gr_obs_smoothed;2", "gr_exp_smoothed;2");
-  models.back().add(t2bb      , folder+"limits_T2bb_full_noBtag2.root", 
+  models.back().add(t2bb      , folder+"limits_T2bb_full_July24.root", 
   		    cBottom, "gr_obs_smoothed", "gr_exp_smoothed");
-  models.back().add(t2tt      , folder+"limits_T2tt_full_noBtag2.root ",
+  models.back().add(t2tt      , folder+"limits_T2tt_full_July24.root ",
   		    cTop, "gr_obs_smoothed", "gr_exp_smoothed");
 
   ////// 2015
@@ -310,7 +310,7 @@ void getModelParams(TString model, float &Xmin, float &Xmax, float &Ymin, float 
   TString msq("m_{#kern[0.15]{#tilde{q}}} [GeV]");
   Xtitle = mglu;
   if(model == "T1"){
-    Xmin = 600; Xmax = 1950;
+    Xmin = 600; Xmax = 2100;
     Ymin = 0;   Ymax = 1885;
     glu_lsp = 0;
   }
@@ -366,7 +366,7 @@ void addLabelsTitle(float lMargin, float tMargin, float rMargin, TString title){
   // Printing luminosity
   label.SetTextAlign(31); label.SetTextFont(42); label.SetTextSize(0.6*tMargin);
   //  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "2.3 fb^{-1} (13 TeV)");
-  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "7.7 fb^{-1} (13 TeV)");
+  label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "12.9 fb^{-1} (13 TeV)");
   //label.DrawLatex(1-rMargin-0.02, 1-tMargin+0.018, "Dec 2015");
   // Printing analysis name
   label.SetTextAlign(11); label.SetTextFont(42); label.SetTextSize(legTextSize);
