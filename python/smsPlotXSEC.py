@@ -64,7 +64,7 @@ class smsPlotXSEC(smsPlotABS):
         t = 0.07
         r = 0.05
     #    writeAnalysisText = True
-        analysisText   = "#bf{SP Analysis}"
+        analysisText   = "#bf{SP analysis}"
         analysisTextFont = 42 
         lumiTextSize     = 0.6
         lumiTextOffset   = 0.2
